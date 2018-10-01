@@ -3,8 +3,10 @@ package _01_Custom_ArrayList;
 @SuppressWarnings("unchecked")
 
 public class ArrayList <T>{
+	T[] tArray = new T[];
 	
 	public ArrayList() {
+		
 	}
 	
 	public T get(int loc) throws IndexOutOfBoundsException {
