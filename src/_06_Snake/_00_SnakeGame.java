@@ -101,6 +101,14 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_UP: 
+		case KeyEvent.VK_DOWN:
+		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_SPACE:
+		}
 		//1. Use a switch statement on e.getKeyCode()
 		//   to determine which key was pressed.
 		
