@@ -88,11 +88,14 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 		switch (choice) {
 		case "Beginner":
-			timer.setDelay(15);
+			timer.setDelay(500);
+			break;
 		case "Moderate":
-			timer.setDelay(10);
+			timer.setDelay(100);
+			break;
 		case "Expert":
-			timer.setDelay(5);
+			timer.setDelay(50);
+			break;
 		}
 
 		// 3. start the timer
@@ -115,14 +118,19 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			snake.setDirection(Direction.UP);
+			break;
 		case KeyEvent.VK_DOWN:
 			snake.setDirection(Direction.DOWN);
+			break;
 		case KeyEvent.VK_RIGHT:
 			snake.setDirection(Direction.RIGHT);
+			break;
 		case KeyEvent.VK_LEFT:
 			snake.setDirection(Direction.LEFT);
+			break;
 		case KeyEvent.VK_SPACE:
 			snake.feed();
+			break;
 		}
 		// 1. Use a switch statement on e.getKeyCode()
 		// to determine which key was pressed.
@@ -138,14 +146,15 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// 1. Create a new Location object that is set to a random location
 		Random rWidth = new Random();
 		Random rHeight = new Random();
-		int rW = rWidth.nextInt(WINDOW_WIDTH);
-		int rH = rHeight.nextInt(WINDOW_HEIGHT);
+		int rW = rWidth.nextInt(WIDTH);
+		int rH = rHeight.nextInt(HEIGHT);
 		Location loc = new Location(rW, rH);
+		
 		// 2. set the foodLocation variable equal to the Location object you just
 		// created.
 		// use the snake's isLocationOnSnake method to make sure you don't put the food
 		// on the snake
-		if (snake.isLocationOnSnake(foodLocation) == true) {
+		if (snake.isLocationOnSnake(loc)==true) {
 			setFoodLocation();
 		} else {
 			foodLocation = loc;
@@ -169,8 +178,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// else, exit the game
 		switch (pick) {
 		case "Yes":
-			snake.reset(snake.getHeadLocation());
+			
 			snake.reset(foodLocation);
+			timer.start();
 		case "No":
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
@@ -193,9 +203,11 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		}
 		// 3. if the location of the head is equal to the location of the food,
 		// feed the snake and set the food location
-		if (snake.getHeadLocation() == foodLocation) {
+		
+		if (snake.getHeadLocation().equals(foodLocation)) {
 			snake.feed();
 			setFoodLocation();
+			System.out.println("food");
 		}
 		// 4. call panel.repaint();
 		panel.repaint();

@@ -26,8 +26,8 @@ public class Snake {
 	}
 
 	public void feed() {
-		// 1. add a new SnakeSegment object to the snake
-		snake.add(new SnakeSegment(snake.get(0).getLocation(), BODY_SIZE));
+		snake.add(new SnakeSegment(getHeadLocation(), BODY_SIZE));
+		System.out.println(snake.size());
 	}
 
 	public Location getHeadLocation() {
@@ -38,36 +38,36 @@ public class Snake {
 	public void update() {
 		// 1. use a switch statement to check on the currentDirection
 		// of the snake and calculate its next x and y position.
-		
-		Location newLoc;
+		Location newLoc = null;
 		switch (currentDirection) {
 		case RIGHT:
 
 			newLoc = new Location(head.getLocation().x + 1, head.getLocation().y);
-			head.setLocation(newLoc);
+		
+			break;
 
 		case LEFT:
 
 			newLoc = new Location(head.getLocation().x - 1, head.getLocation().y);
-			head.setLocation(newLoc);
+			break;
 
 		case UP:
 
 			newLoc = new Location(head.getLocation().x, head.getLocation().y - 1);
-			head.setLocation(newLoc);
+			break;
 
 		case DOWN:
 
 			newLoc = new Location(head.getLocation().x, head.getLocation().y + 1);
-			head.setLocation(newLoc);
+			break;
 
 		}
-System.out.println("vgbigu");
-		for (int i = snake.size() - 1; i >= 1; i--) {
-			newLoc = new Location(snake.get(i - 1).getLocation().x, snake.get(i - 1).getLocation().y);
+//System.out.println("vgbigu");
+		for (int i = snake.size() - 1; i > 0; i--) {
+			//newLoc = new Location(snake.get(i - 1).getLocation().x, snake.get(i - 1).getLocation().y);
 			snake.get(i).setLocation(snake.get(i - 1).getLocation());
 		}
-
+	head.setLocation(newLoc);
 		// 2. Iterate through the SnakeSegments in reverse order
 		// 2a. Update each snake segment to the location of the segment
 		// in front of it.
@@ -135,8 +135,9 @@ System.out.println("vgbigu");
 		// 1. complete the method so it returns true if the head of the snake is outside
 		// of the window
 		// and false otherwise
-		if (getHeadLocation().x <= 0 || getHeadLocation().x >= _00_SnakeGame.WINDOW_WIDTH || getHeadLocation().y <= 0
-				|| getHeadLocation().y >= _00_SnakeGame.WINDOW_HEIGHT) {
+		System.out.println(getHeadLocation().x);
+		if (getHeadLocation().x <= -1 || getHeadLocation().x >= _00_SnakeGame.WIDTH || getHeadLocation().y <= -1
+				|| getHeadLocation().y >= _00_SnakeGame.HEIGHT) {
 			return true;
 		}
 
