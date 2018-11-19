@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 public class Snake {
 	public static final Color SNAKE_COLOR = Color.BLUE;
 	public static final int BODY_SIZE = 50;
@@ -27,7 +25,7 @@ public class Snake {
 
 	public void feed() {
 		snake.add(new SnakeSegment(getHeadLocation(), BODY_SIZE));
-		System.out.println(snake.size());
+		// System.out.println(snake.size());
 	}
 
 	public Location getHeadLocation() {
@@ -43,7 +41,7 @@ public class Snake {
 		case RIGHT:
 
 			newLoc = new Location(head.getLocation().x + 1, head.getLocation().y);
-		
+
 			break;
 
 		case LEFT:
@@ -62,12 +60,13 @@ public class Snake {
 			break;
 
 		}
-//System.out.println("vgbigu");
+
 		for (int i = snake.size() - 1; i > 0; i--) {
-			//newLoc = new Location(snake.get(i - 1).getLocation().x, snake.get(i - 1).getLocation().y);
+			// newLoc = new Location(snake.get(i - 1).getLocation().x, snake.get(i -
+			// 1).getLocation().y);
 			snake.get(i).setLocation(snake.get(i - 1).getLocation());
 		}
-	head.setLocation(newLoc);
+		head.setLocation(newLoc);
 		// 2. Iterate through the SnakeSegments in reverse order
 		// 2a. Update each snake segment to the location of the segment
 		// in front of it.
@@ -83,34 +82,34 @@ public class Snake {
 		// is true.
 		// set canMove equal to false.
 		// make sure the snake cannot completely reverse directions.
-		System.out.println(d);
+		// System.out.println(d);
 		if (canMove == true) {
 			switch (currentDirection) {
 			case RIGHT:
 				if (d == Direction.LEFT) {
-					JOptionPane.showMessageDialog(null, "You may not turn in completely reverse directions.");
+					System.out.println("You may not turn in completely reverse directions.");
 				} else {
 					currentDirection = d;
-					
+
 				}
 				break;
 			case LEFT:
 				if (d == Direction.RIGHT) {
-					JOptionPane.showMessageDialog(null, "You may not turn in completely reverse directions.");
+					System.out.println("You may not turn in completely reverse directions.");
 				} else {
 					currentDirection = d;
 				}
 				break;
 			case UP:
 				if (d == Direction.DOWN) {
-					JOptionPane.showMessageDialog(null, "You may not turn in completely reverse directions.");
+					System.out.println("You may not turn in completely reverse directions.");
 				} else {
 					currentDirection = d;
 				}
 				break;
 			case DOWN:
 				if (d == Direction.UP) {
-					JOptionPane.showMessageDialog(null, "You may not turn in completely reverse directions.");
+					System.out.println("You may not turn in completely reverse directions.");
 				} else {
 					currentDirection = d;
 				}
@@ -128,6 +127,7 @@ public class Snake {
 		head.setLocation(loc);
 		// 3. add the head to the snake
 		snake.add(head);
+		System.out.println(snake.size());
 
 	}
 
@@ -135,7 +135,7 @@ public class Snake {
 		// 1. complete the method so it returns true if the head of the snake is outside
 		// of the window
 		// and false otherwise
-		System.out.println(getHeadLocation().x);
+		// System.out.println(getHeadLocation().x);
 		if (getHeadLocation().x <= -1 || getHeadLocation().x >= _00_SnakeGame.WIDTH || getHeadLocation().y <= -1
 				|| getHeadLocation().y >= _00_SnakeGame.HEIGHT) {
 			return true;

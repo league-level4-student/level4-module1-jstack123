@@ -128,9 +128,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		case KeyEvent.VK_LEFT:
 			snake.setDirection(Direction.LEFT);
 			break;
-		case KeyEvent.VK_SPACE:
-			snake.feed();
-			break;
+		/*
+		 * case KeyEvent.VK_SPACE: snake.feed(); break;
+		 */
 		}
 		// 1. Use a switch statement on e.getKeyCode()
 		// to determine which key was pressed.
@@ -142,19 +142,21 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 	}
 
+	Random rWidth = new Random();
+	Random rHeight = new Random();
+
 	private void setFoodLocation() {
 		// 1. Create a new Location object that is set to a random location
-		Random rWidth = new Random();
-		Random rHeight = new Random();
+
 		int rW = rWidth.nextInt(WIDTH);
 		int rH = rHeight.nextInt(HEIGHT);
 		Location loc = new Location(rW, rH);
-		
+
 		// 2. set the foodLocation variable equal to the Location object you just
 		// created.
 		// use the snake's isLocationOnSnake method to make sure you don't put the food
 		// on the snake
-		if (snake.isLocationOnSnake(loc)==true) {
+		if (snake.isLocationOnSnake(loc) == true) {
 			setFoodLocation();
 		} else {
 			foodLocation = loc;
@@ -178,9 +180,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		// else, exit the game
 		switch (pick) {
 		case "Yes":
-			
-			snake.reset(foodLocation);
+			int rW = rWidth.nextInt(WIDTH);
+			int rH = rHeight.nextInt(HEIGHT);
+			Location loc = new Location(rW, rH);
+
+			snake.reset(loc);
 			timer.start();
+
 		case "No":
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
@@ -203,11 +209,11 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		}
 		// 3. if the location of the head is equal to the location of the food,
 		// feed the snake and set the food location
-		
+
 		if (snake.getHeadLocation().equals(foodLocation)) {
 			snake.feed();
 			setFoodLocation();
-			System.out.println("food");
+			// System.out.println("food");
 		}
 		// 4. call panel.repaint();
 		panel.repaint();
